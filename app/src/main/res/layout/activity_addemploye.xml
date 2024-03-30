@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".addemploye">
+
+    <EditText
+        android:id="@+id/editfirstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter your first name"
+        />
+
+    <EditText
+        android:id="@+id/editlastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter your last name"
+
+        />
+
+    <EditText
+        android:id="@+id/editiden"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter your identifier"
+
+        />
+
+    <EditText
+        android:id="@+id/editnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter your  number"
+        />
+    <EditText
+        android:id="@+id/editemail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter your  email"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnConfirm"
+        android:text="add employe"
+        />
+</LinearLayout>
