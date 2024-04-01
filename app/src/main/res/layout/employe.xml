@@ -20,14 +20,7 @@
         android:text="zorgani"
         android:layout_alignTop="@id/img"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lastname"
-        android:layout_toRightOf="@id/firstname"
-        android:text="hichem"
-        android:layout_alignTop="@id/img"
-        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +40,7 @@
         android:layout_toRightOf="@id/img"
         android:layout_alignBottom="@id/img"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/email"
         android:layout_below="@id/number"
@@ -57,10 +50,12 @@
         android:layout_alignBottom="@id/img"/>
 
     <Button
-        android:id="@+id/updatebtn"
-        android:layout_width="121dp"
-        android:layout_height="73dp"
-        android:layout_marginLeft="89dp"
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="101dp"
         android:layout_toRightOf="@id/firstname"
-        android:text="Modifier" />
+        android:layout_alignBottom="@id/iden"
+        android:text="option" />
+
 </RelativeLayout>

@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/Lv"
         android:layout_weight="1"
+        android:clickable="true"
         />
     <Button
             android:id="@+id/btnadd"

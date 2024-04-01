@@ -17,7 +17,7 @@ public class Dbemploye extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create_table = "create table employe(id integer primary key,identifier integer,firstname varchar(30),lastname varchar(30),phone integer, email varchar(30))";
+        String create_table = "create table employe(id integer primary key autoincrement,identifier varchar(30),firstname varchar(30),lastname varchar(30),phone varchar(30), email varchar(30),image blog)";
         db.execSQL(create_table);
     }
 
@@ -26,16 +26,21 @@ public class Dbemploye extends SQLiteOpenHelper {
 
     }
 
-    public void addemploye(employe employe) {
+    public boolean insertemploye(String identifier,String firstname,String lastname,String phone,String email) {
         SQLiteDatabase Db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("identifier", employe.getIden());
-        values.put("firstname", employe.getFirstname());
-        values.put("lastname", employe.getLastname());
-        values.put("phone", employe.getNumber());
-        values.put("email", employe.getEmail());
-
-        Db.insert("employe", null, values);
+        values.put("identifier", identifier);
+        values.put("firstname", firstname);
+        values.put("lastname", lastname);
+        values.put("phone", phone);
+        values.put("email", email);
+        //values.put("image", image);
+        long res = Db.insert("employe", null, values);
+        if (res==-1){
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public ArrayList<employe> getallemploye() {
@@ -55,5 +60,23 @@ public class Dbemploye extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return employes;
+    }
+
+   public boolean updateemploye(String id,String identifier,String firstname,String lastname,String email,String phone) {
+        SQLiteDatabase Db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("identifier",identifier);
+        values.put("firstname", firstname);
+        values.put("lastname", lastname);
+        values.put("phone", phone);
+        values.put("email", email);
+
+       Db.update("employe", values, "id=?", new String[]{id});
+        return true;
+
+    }
+    public void deleteemploye(String id){
+        SQLiteDatabase Db =this.getWritableDatabase();
+          Db.delete("employe","id=?", new String[]{id});
     }
 }
