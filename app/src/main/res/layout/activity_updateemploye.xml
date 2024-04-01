@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".emplye">
+    tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/editfirstname"
+        android:id="@+id/editf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="enter your first name"
         />
 
     <EditText
-        android:id="@+id/editlastname"
+        android:id="@+id/editl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="enter your last name"
@@ -23,7 +23,7 @@
         />
 
     <EditText
-        android:id="@+id/editiden"
+        android:id="@+id/editi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="enter your identifier"
@@ -31,13 +31,13 @@
         />
 
     <EditText
-        android:id="@+id/editnumber"
+        android:id="@+id/editn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="enter your  number"
         />
     <EditText
-        android:id="@+id/editemail"
+        android:id="@+id/edite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="enter your  email"

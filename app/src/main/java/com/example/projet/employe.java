@@ -1,6 +1,7 @@
 package com.example.projet;
 
 public class employe {
+    public int id;
     public String firstname;
     public String lastname;
     public String iden;
@@ -8,12 +9,21 @@ public class employe {
     public String email;
 
 
-    public employe(String firstname, String lastname, String iden, String number,String email) {
+    public employe(int id,String firstname, String lastname, String iden, String number,String email) {
+        this.id =id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.iden = iden;
         this.number = number;
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstname() {

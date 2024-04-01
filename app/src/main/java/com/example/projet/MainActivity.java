@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+import android.widget.BaseAdapter;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         String email = editemail.getText().toString();
                         boolean res = Db.insertemploye(identifier, firstname, lastname, phone, email);
                         if (res) {
+                            adapter.notifyDataSetChanged();
                             showemployes();
                             Toast.makeText(MainActivity.this, "Nouvel employé ajouté", Toast.LENGTH_SHORT).show();
                         } else {

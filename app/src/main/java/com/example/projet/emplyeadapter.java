@@ -78,10 +78,10 @@ public class emplyeadapter extends BaseAdapter {
         return convertView;
     }
 
-   public void showPopupMenu(View view, final int position) {
+   public void showPopupMenu(View view, int position) {
         PopupMenu popupMenu = new PopupMenu(context, view);
         employe = employes.get(position);
-        did = Integer.parseInt(employe.getIden());
+        did = employe.getId();
         dname = employe.getFirstname();
 
 
@@ -89,13 +89,13 @@ public class emplyeadapter extends BaseAdapter {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.edit) {
-                    LayoutInflater inflater = LayoutInflater.from(context);
+                   LayoutInflater inflater = LayoutInflater.from(context);
                     View view = inflater.inflate(R.layout.activity_updateemploye, null);
-                    EditText editfirstname = view.findViewById(R.id.editfirstname);
-                    EditText editlastname = view.findViewById(R.id.editlastname);
-                    EditText editnumber = view.findViewById(R.id.editnumber);
-                    EditText editemail = view.findViewById(R.id.editemail);
-                    EditText editiden = view.findViewById(R.id.editiden);
+                    EditText editfirstname = view.findViewById(R.id.editf);
+                    EditText editlastname = view.findViewById(R.id.editl);
+                    EditText editnumber = view.findViewById(R.id.editn);
+                    EditText editemail = view.findViewById(R.id.edite);
+                    EditText editiden = view.findViewById(R.id.editi);
                     ImageView img = view.findViewById(R.id.img);
 
                     String oldfirstname = employe.getFirstname();
@@ -108,7 +108,7 @@ public class emplyeadapter extends BaseAdapter {
                     editlastname.setText(oldlastname);
                     editemail.setText(oldemail);
                     editiden.setText(oldiden);
-                    editiden.setText(oldiden);
+                    editnumber.setText(oldnumber);
 
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -124,14 +124,19 @@ public class emplyeadapter extends BaseAdapter {
                                     String lastname = editlastname.getText().toString();
                                     String phone = editnumber.getText().toString();
                                     String email = editemail.getText().toString();
-                                    boolean res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email);
-                                    if (res) {
+                                    int res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email);
+                                    if (res>0) {
+                                        employe.setFirstname(firstname);
+                                        employe.setLastname(lastname);
+                                        employe.setNumber(phone);
+                                        employe.setEmail(email);
+                                        employe.setIden(identifier);
                                         Toast.makeText(context, "modifier", Toast.LENGTH_SHORT).show();
-                                        notifyDataSetChanged(); // Mettre à jour l'affichage de la liste
+                                        notifyDataSetChanged();
                                     } else {
                                         Toast.makeText(context, "Échec de la modification de l'employé", Toast.LENGTH_SHORT).show();
                                     }
-                                    dialog.dismiss(); // Fermer le dialogue après la modification
+                                    dialog.dismiss();
                                 }
                             })
                             .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
@@ -149,15 +154,17 @@ public class emplyeadapter extends BaseAdapter {
                             .setPositiveButton("Supprimer ", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Db.deleteemploye(String.valueOf(did));
-                                    employes.remove(position);
-                                    notifyDataSetChanged();
+                                   int res = Db.deleteemploye(String.valueOf(did));
+                                   if (res >0) {
+                                       employes.remove(position);
+                                       notifyDataSetChanged();
+                                   }
                                 }
                             })
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // Do nothing or handle cancellation
+                                    dialog.dismiss();
                                 }
                             });
                     builder.create().show();

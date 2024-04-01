@@ -50,33 +50,34 @@ public class Dbemploye extends SQLiteOpenHelper {
         Cursor cursor = Db.rawQuery(selectall, null);
         if (cursor.moveToFirst()) {
             do {
+                int id = cursor.getInt(0);
                 String Number = cursor.getString(cursor.getColumnIndex("phone"));
                 String Firstname = cursor.getString(cursor.getColumnIndex("firstname"));
                 String Lastname = cursor.getString(cursor.getColumnIndex("lastname"));
                 String identifier = cursor.getString(cursor.getColumnIndex("identifier"));
                 String Email = cursor.getString(cursor.getColumnIndex("email"));
-                employe employe = new employe(Firstname, Lastname, identifier, Number, Email);
+                employe employe = new employe(id,Firstname, Lastname, identifier, Number, Email);
                 employes.add(employe);
             } while (cursor.moveToNext());
         }
         return employes;
     }
 
-   public boolean updateemploye(String id,String identifier,String firstname,String lastname,String email,String phone) {
+   public int updateemploye(String id,String identifier,String firstname,String lastname,String email,String phone) {
         SQLiteDatabase Db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("identifier",identifier);
+        values.put("identifier", identifier);
         values.put("firstname", firstname);
         values.put("lastname", lastname);
         values.put("phone", phone);
         values.put("email", email);
 
-       Db.update("employe", values, "id=?", new String[]{id});
-        return true;
+      return Db.update("employe", values, "id=?", new String[]{id});
+
 
     }
-    public void deleteemploye(String id){
+    public int deleteemploye(String id){
         SQLiteDatabase Db =this.getWritableDatabase();
-          Db.delete("employe","id=?", new String[]{id});
+         return Db.delete("employe","id=?", new String[]{id});
     }
 }
