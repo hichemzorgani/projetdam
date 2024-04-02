@@ -1,15 +1,22 @@
 package com.example.projet;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class afficheremploye extends AppCompatActivity {
-
+    String email ;
+    String phone;
+ Button contact;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,13 +35,53 @@ public class afficheremploye extends AppCompatActivity {
         String firstname = employe.getFirstname();
         String lastname = employe.getLastname();
         String identifier = employe.getIden();
-        String email = employe.getEmail();
-        String phone = employe.getNumber();
+         email = employe.getEmail();
+         phone = employe.getNumber();
         d_firstname.setText(firstname);
         d_lastname.setText(lastname);
         d_identifier.setText(identifier);
         d_phone.setText(phone);
         d_email.setText(email);
+
+
+
+        contact = findViewById(R.id.contact);
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              contactdialog();
+            }
+        });
+
+    }
+
+    private void contactdialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choisir un moyen de contact");
+
+
+        builder.setPositiveButton("Par téléphone", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                phone.toString().trim();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ Uri.encode(phone)));
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("Par email", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                email.toString();
+                sendemail(email);
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    public void sendemail(String email){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL,new String[]{email});
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent,"choose email client:"));
 
     }
 
