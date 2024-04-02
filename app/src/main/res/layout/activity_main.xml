@@ -17,6 +17,14 @@
         android:drawableLeft="@drawable/searchicon"
         android:drawablePadding="8dp"
         />
+    <Button
+        android:id="@+id/btnadd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter Un Employe"
+        android:layout_gravity="end"
+        android:background="@drawable/rounded"
+        />
 
 
     <ListView
@@ -26,12 +34,7 @@
         android:layout_weight="1"
         android:clickable="true"
         />
-    <Button
-            android:id="@+id/btnadd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Button"
-            />
-        />
+
+
 
 </LinearLayout>

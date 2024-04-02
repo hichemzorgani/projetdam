@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Modifier la taille du texte du titre de la barre d'action -->
+        <item name="android:actionBarSize">45dp</item> <!-- Modifier la taille de la barre d'action -->
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <!-- Déplacer l'icône vers la gauche -->
+        <item name="android:contentInsetStart">5dp</item> <!-- Ajuster la marge de l'icône -->
+        <!-- Modifier la taille du texte du titre -->
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+    <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <!-- Modifier la taille du texte du titre -->
+        <item name="android:textSize">10sp</item>
+    </style>
+</resources>

@@ -49,6 +49,12 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Db = new Dbemploye(this);
+
+        getSupportActionBar().setTitle("Gestion Des Employes");
+        //getSupportActionBar().setIcon(R.mipmap.icon);
+        getSupportActionBar().show();
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         Lv = findViewById(R.id.Lv);
         showemployes();
         Lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -71,6 +77,18 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         searchbar.addTextChangedListener(this);
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbarmenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
