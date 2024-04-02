@@ -7,10 +7,15 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/searchbar"
+        android:hint="Search"
+        android:inputType="text"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/searchicon"
+        android:drawablePadding="8dp"
         />
 
 

@@ -65,6 +65,8 @@
         android:layout_marginLeft="104dp"
         android:layout_marginBottom="-32dp"
         android:layout_toRightOf="@id/firstname"
-        android:text="option" />
+        android:text="option"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
 
 </RelativeLayout>

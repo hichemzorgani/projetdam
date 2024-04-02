@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.SearchView;
 import android.widget.Toast;
 import android.widget.BaseAdapter;
 
@@ -32,13 +35,14 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TextWatcher {
     Dbemploye Db;
     ListView Lv;
     ArrayList<employe> arraylist;
     int did;
     String dname;
     emplyeadapter adapter;
+    EditText searchbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,25 @@ public class MainActivity extends AppCompatActivity {
                 showAddEmployeeDialog();
             }
         });
+         searchbar = findViewById(R.id.searchbar);
+        searchbar.addTextChangedListener(this);
+
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                 this.adapter.getFilter().filter(s);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
     }
 
     private void showemployes() {
