@@ -4,7 +4,7 @@
         android:title="Theme"
         />
     <item android:id="@+id/display"
-        android:title="Display"
+        android:title="Switch view"
         />
     <item android:id="@+id/Language"
         android:title="Language"

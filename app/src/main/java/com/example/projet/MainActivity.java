@@ -8,6 +8,7 @@ import android.Manifest;
 import android.accounts.AbstractAccountAuthenticator;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,10 +20,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -36,12 +39,21 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements TextWatcher {
+    ViewStub stubGrid;
+    ViewStub stubList;
+    int currentViewMode = 0;
+    int VIEW_MODE_LISTVIEW = 0;
+    int VIEW_MODE_GRIDVIEW = 1;
+
+
     Dbemploye Db;
     ListView Lv;
+    GridView Gv;
     ArrayList<employe> arraylist;
     int did;
     String dname;
     emplyeadapter adapter;
+    GridViewAdapter Gvadapter;
     EditText searchbar;
 
     @Override
@@ -49,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Db = new Dbemploye(this);
+        stubList=findViewById(R.id.stub_list);
+        stubGrid = findViewById(R.id.stub_grid);
+        stubGrid.inflate();
+        stubList.inflate();
 
         getSupportActionBar().setTitle("Gestion Des Employes");
         //getSupportActionBar().setIcon(R.mipmap.icon);
@@ -56,15 +72,13 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Lv = findViewById(R.id.Lv);
-        showemployes();
-        Lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, afficheremploye.class);
-                intent.putExtra("POSITION", String.valueOf(position));
-                startActivity(intent);
-            }
-        });
+        Gv = findViewById(R.id.Gv);
+        SharedPreferences sharedPreferences = getSharedPreferences("ViewMode",MODE_PRIVATE);
+        currentViewMode = sharedPreferences.getInt("currentViewMode",VIEW_MODE_LISTVIEW);
+        switchView();
+        Lv.setOnItemClickListener(onitemclick);
+        Gv.setOnItemClickListener(onitemclick);
+
         //button ajouter
         Button btnadd = findViewById(R.id.btnadd);
         btnadd.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +92,45 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
 
     }
+    AdapterView.OnItemClickListener onitemclick = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(MainActivity.this, afficheremploye.class);
+                intent.putExtra("POSITION", String.valueOf(position));
+                startActivity(intent);
+
+
+        }
+    };
+
+
+    private void switchView() {
+        if (VIEW_MODE_LISTVIEW ==currentViewMode){
+            stubList.setVisibility(View.VISIBLE);
+            stubGrid.setVisibility(View.GONE);
+
+        } else {
+            stubList.setVisibility(View.GONE);
+            stubGrid.setVisibility(View.VISIBLE);
+        }
+        setAdapters();
+    }
+
+    private void setAdapters() {
+        if (VIEW_MODE_LISTVIEW == currentViewMode){
+            showemployes();
+        } else {
+           gridshowemployes();
+        }
+    }
+
+    private void gridshowemployes() {
+        arraylist = Db.getallemploye();
+        Gvadapter = new GridViewAdapter(this, arraylist);
+        Gv.setAdapter(Gvadapter);
+        Gvadapter.notifyDataSetChanged();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,12 +141,30 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.display) {
+            if (VIEW_MODE_LISTVIEW == currentViewMode){
+                currentViewMode = VIEW_MODE_GRIDVIEW;
+
+            } else {
+                currentViewMode = VIEW_MODE_LISTVIEW;
+            }
+            switchView();
+            SharedPreferences sharedPreferences = getSharedPreferences("ViewMode",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("currentViewMode",currentViewMode);
+            editor.commit();
+
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-                 this.adapter.getFilter().filter(s);
+        if(currentViewMode==0){
+            this.adapter.getFilter().filter(s);
+        } else {
+            this.Gvadapter.getFilter().filter(s);
+        }
     }
 
     @Override
@@ -138,9 +209,16 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                         String email = editemail.getText().toString();
                         boolean res = Db.insertemploye(identifier, firstname, lastname, phone, email);
                         if (res) {
-                            adapter.notifyDataSetChanged();
-                            showemployes();
-                            Toast.makeText(MainActivity.this, "Nouvel employé ajouté", Toast.LENGTH_SHORT).show();
+                            if(currentViewMode==0){
+                                adapter.notifyDataSetChanged();
+                                showemployes();
+                                Toast.makeText(MainActivity.this, "Nouvel employé ajouté", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Gvadapter.notifyDataSetChanged();
+                                gridshowemployes();
+                                Toast.makeText(MainActivity.this, "Nouvel employé ajouté", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             Toast.makeText(MainActivity.this, "Échec de l'ajout de l'employé", Toast.LENGTH_SHORT).show();
                         }
