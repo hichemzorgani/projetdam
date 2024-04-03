@@ -69,7 +69,10 @@ public class Dbemploye extends SQLiteOpenHelper {
                 String identifier = cursor.getString(cursor.getColumnIndex("identifier"));
                 String Email = cursor.getString(cursor.getColumnIndex("email"));
                 byte[] imageBytes = cursor.getBlob(cursor.getColumnIndex("image"));
-                Bitmap imageBitmap = getImage(imageBytes);
+                Bitmap imageBitmap = null;
+                if (imageBytes != null) {
+                    imageBitmap = getImage(imageBytes);
+                }
                 employe employe = new employe(id,Firstname, Lastname, identifier, Number, Email,imageBitmap);
                 employes.add(employe);
             } while (cursor.moveToNext());
@@ -78,7 +81,10 @@ public class Dbemploye extends SQLiteOpenHelper {
     }
 
     private Bitmap getImage(byte[] imageBytes) {
-        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        if (imageBytes != null) {
+            return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        }
+        return null;
     }
 
     public int updateemploye(String id,String identifier,String firstname,String lastname,String email,String phone) {

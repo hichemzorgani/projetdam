@@ -1,10 +1,15 @@
 package com.example.projet;
 
+import static androidx.core.app.ActivityCompat.startActivityForResult;
 import static androidx.core.content.ContextCompat.startActivity;
+
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +24,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
@@ -68,12 +74,20 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
         TextView firstname = convertView.findViewById(R.id.firstname);
         TextView lastname = convertView.findViewById(R.id.lastname);
         TextView iden = convertView.findViewById(R.id.iden);
+        ImageView img = convertView.findViewById(R.id.img);
 
         Button btn = convertView.findViewById(R.id.btn);
 
         firstname.setText(emp.firstname);
         lastname.setText(emp.lastname);
         iden.setText(emp.iden);
+        Bitmap bitmap = emp.getEmployeimage();
+        if (bitmap != null) {
+            img.setImageBitmap(bitmap);
+        } else {
+
+            img.setImageResource(R.drawable.icon);
+        }
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,12 +138,16 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
         String oldnumber = employe.getNumber();
         String oldemail = employe.getEmail();
         String oldiden = employe.getIden();
+        Bitmap bitmap = employe.getEmployeimage();
 
+
+        img.setImageBitmap(bitmap);
         editfirstname.setText(oldfirstname);
         editlastname.setText(oldlastname);
         editemail.setText(oldemail);
         editiden.setText(oldiden);
         editnumber.setText(oldnumber);
+
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -168,6 +186,10 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
                 });
         builder.create().show();
     }
+
+
+
+
     public void Suppressionbuilder(int position){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Suppression")
@@ -232,4 +254,5 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
           notifyDataSetChanged();
         }
     }
+
 }

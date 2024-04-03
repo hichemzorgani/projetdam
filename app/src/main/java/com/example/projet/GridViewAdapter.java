@@ -2,6 +2,7 @@ package com.example.projet;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,10 +67,18 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         TextView lastname = convertView.findViewById(R.id.lastname);
         TextView iden = convertView.findViewById(R.id.iden);
         Button btn = convertView.findViewById(R.id.btn);
+        ImageView img = convertView.findViewById(R.id.img);
 
         firstname.setText(emp.firstname);
         lastname.setText(emp.lastname);
         iden.setText(emp.iden);
+        Bitmap bitmap = emp.getEmployeimage();
+        if (bitmap != null) {
+            img.setImageBitmap(bitmap);
+        } else {
+
+            img.setImageResource(R.drawable.icon);
+        }
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,11 +210,10 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
                 constraint = constraint.toString().toUpperCase();
 
                 ArrayList<employe> filters = new ArrayList<>();
-                for (int i = 0; i < tempemployes.size(); i++) {
-                    String fullName = tempemployes.get(i).getFirstname().toUpperCase() + " " + tempemployes.get(i).getLastname().toUpperCase();
+                for (employe emp : tempemployes) {
+                    String fullName = emp.getFirstname().toUpperCase() + " " + emp.getLastname().toUpperCase();
                     if (fullName.contains(constraint)) {
-                        employe employee = new employe(tempemployes.get(i).getId(), tempemployes.get(i).getFirstname(), tempemployes.get(i).getLastname(), tempemployes.get(i).getIden(), tempemployes.get(i).getNumber(), tempemployes.get(i).getEmail());
-                        filters.add(employee);
+                        filters.add(emp); // Add the entire employee object to filters list
                     }
                 }
                 results.count = filters.size();
