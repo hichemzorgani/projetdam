@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:padding="16dp"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
     >
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/img"
         android:src="@drawable/icon"
+
         />
     <Button
         android:id="@+id/btn"
@@ -29,7 +30,7 @@
         android:layout_marginLeft="20dp"
         android:text="zorgani"
         android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginTop="15dp"
         />
     <TextView
@@ -37,10 +38,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/lastname"
         android:layout_toRightOf="@id/firstname"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="6dp"
         android:text="hichem"
         android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginTop="15dp"
 
         />
@@ -53,30 +54,11 @@
         android:layout_below="@+id/firstname"
         android:layout_marginTop="10dp"
         android:layout_alignLeft="@+id/firstname"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="1234566" />
 
-    <TextView
-        android:id="@+id/number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iden"
-        android:layout_alignBottom="@id/img"
-        android:layout_marginLeft="46dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="-3dp"
-        android:layout_toRightOf="@id/img"
-        android:text="1234566" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/email"
-        android:layout_below="@id/number"
-        android:text="1234566"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@id/img"
-        android:layout_alignBottom="@id/img"/>
+
 
 
 </RelativeLayout>

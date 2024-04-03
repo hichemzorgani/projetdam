@@ -1,6 +1,7 @@
 package com.example.projet;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +11,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ActionMode;
@@ -44,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     int currentViewMode = 0;
     int VIEW_MODE_LISTVIEW = 0;
     int VIEW_MODE_GRIDVIEW = 1;
+    private static final int PICK_IMAGE_REQUEST = 99;
+    private Uri imagepath;
+    private Bitmap imagetostore;
 
 
     Dbemploye Db;
@@ -55,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     emplyeadapter adapter;
     GridViewAdapter Gvadapter;
     EditText searchbar;
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +87,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         Lv.setOnItemClickListener(onitemclick);
         Gv.setOnItemClickListener(onitemclick);
 
-        //button ajouter
-        Button btnadd = findViewById(R.id.btnadd);
-        btnadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAddEmployeeDialog();
-            }
-        });
+
          searchbar = findViewById(R.id.searchbar);
         searchbar.addTextChangedListener(this);
 
@@ -155,6 +156,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
             editor.commit();
 
         }
+        if (item.getItemId() == R.id.add){
+            showAddEmployeeDialog();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -192,13 +196,19 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         EditText editnumber = view.findViewById(R.id.editnumber);
         EditText editemail = view.findViewById(R.id.editemail);
         EditText editiden = view.findViewById(R.id.editiden);
-        ImageView img = view.findViewById(R.id.img);
+        img = view.findViewById(R.id.img);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choseimage();
+            }
+        });
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setView(view)
                 .setTitle("Ajouter un employer")
                 .setMessage("entrer les informations")
-                .setIcon(R.drawable.icon)
+                .setIcon(R.drawable.baseline_add_24)
                 .setPositiveButton("ajouter un employer", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -207,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                         String lastname = editlastname.getText().toString();
                         String phone = editnumber.getText().toString();
                         String email = editemail.getText().toString();
-                        boolean res = Db.insertemploye(identifier, firstname, lastname, phone, email);
+                        boolean res = Db.insertemploye(identifier, firstname, lastname, phone, email,imagetostore);
                         if (res) {
                             if(currentViewMode==0){
                                 adapter.notifyDataSetChanged();
@@ -231,5 +241,35 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                     }
                 });
         builder.create().show();
+    }
+
+    private void choseimage() {
+        try {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(intent,PICK_IMAGE_REQUEST);
+
+        }
+        catch (Exception e){
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
+                imagepath = data.getData();
+                imagetostore = MediaStore.Images.Media.getBitmap(getContentResolver(),imagepath);
+                img.setImageBitmap(imagetostore);
+
+            }
+        }
+        catch (Exception e){
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

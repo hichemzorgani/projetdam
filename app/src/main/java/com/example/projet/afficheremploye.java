@@ -42,6 +42,7 @@ public class afficheremploye extends AppCompatActivity {
         d_identifier.setText(identifier);
         d_phone.setText(phone);
         d_email.setText(email);
+        getSupportActionBar().setTitle("Employee Directory");
 
 
 

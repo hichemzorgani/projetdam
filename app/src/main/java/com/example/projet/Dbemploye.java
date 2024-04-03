@@ -5,19 +5,24 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.annotation.Nullable;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class Dbemploye extends SQLiteOpenHelper {
+    private ByteArrayOutputStream byteArrayOutputStream;
+    private byte[] imageinbyte;
     public Dbemploye(@Nullable Context context) {
         super(context, "project_db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create_table = "create table employe(id integer primary key autoincrement,identifier varchar(30),firstname varchar(30),lastname varchar(30),phone varchar(30), email varchar(30),image blog)";
+        String create_table = "create table employe(id integer primary key autoincrement,identifier varchar(30),firstname varchar(30),lastname varchar(30),phone varchar(30), email varchar(30),image blob)";
         db.execSQL(create_table);
     }
 
@@ -26,7 +31,7 @@ public class Dbemploye extends SQLiteOpenHelper {
 
     }
 
-    public boolean insertemploye(String identifier,String firstname,String lastname,String phone,String email) {
+    public boolean insertemploye(String identifier, String firstname, String lastname, String phone, String email, Bitmap image) {
         SQLiteDatabase Db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("identifier", identifier);
@@ -34,13 +39,20 @@ public class Dbemploye extends SQLiteOpenHelper {
         values.put("lastname", lastname);
         values.put("phone", phone);
         values.put("email", email);
-        //values.put("image", image);
+        byte[] imageBytes = getBytes(image);
+        values.put("image", imageBytes);
         long res = Db.insert("employe", null, values);
         if (res==-1){
             return false;
         } else {
             return true;
         }
+    }
+
+    private byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        return stream.toByteArray();
     }
 
     public ArrayList<employe> getallemploye() {
@@ -56,14 +68,20 @@ public class Dbemploye extends SQLiteOpenHelper {
                 String Lastname = cursor.getString(cursor.getColumnIndex("lastname"));
                 String identifier = cursor.getString(cursor.getColumnIndex("identifier"));
                 String Email = cursor.getString(cursor.getColumnIndex("email"));
-                employe employe = new employe(id,Firstname, Lastname, identifier, Number, Email);
+                byte[] imageBytes = cursor.getBlob(cursor.getColumnIndex("image"));
+                Bitmap imageBitmap = getImage(imageBytes);
+                employe employe = new employe(id,Firstname, Lastname, identifier, Number, Email,imageBitmap);
                 employes.add(employe);
             } while (cursor.moveToNext());
         }
         return employes;
     }
 
-   public int updateemploye(String id,String identifier,String firstname,String lastname,String email,String phone) {
+    private Bitmap getImage(byte[] imageBytes) {
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+    }
+
+    public int updateemploye(String id,String identifier,String firstname,String lastname,String email,String phone) {
         SQLiteDatabase Db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("identifier", identifier);

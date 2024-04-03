@@ -6,49 +6,138 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".afficheremploye">
-
-    <ImageView
+    <TextView
+        android:id="@+id/employedetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon" />
+        android:text="Employé Details"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginLeft="10dp"/>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#d1d1d1"
+        android:layout_gravity="center">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="184dp"
+        android:layout_height="149dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/icon"
+        android:layout_marginBottom="15dp"/>
+    </FrameLayout>
 
     <TextView
+        android:id="@+id/label_firstname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prénom:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
         android:id="@+id/firstname"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="John"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#d1d1d1"
+        android:layout_marginBottom="0dp"/>
 
     <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/label_lastname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom:"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
         android:id="@+id/lastname"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-        android:layout_weight="1"
-    />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Doe"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#d1d1d1"
+        android:layout_marginBottom="0dp"/>
 
     <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/label_identifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Identifiant:"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
         android:id="@+id/identifier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        />
+        android:text="123456"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#d1d1d1"
+        android:layout_marginBottom="0dp"/>
 
     <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/label_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email:"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:text="john.doe@example.com"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#d1d1d1"
+        android:layout_marginBottom="0dp"/>
 
     <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/label_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Téléphone:"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        />
+        android:text="123-456-7890"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#d1d1d1"
+        android:layout_marginBottom="0dp"/>
+
     <Button
+        android:id="@+id/contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/contact"
-        android:text="contact"
-        />
-
+        android:text="Contacter l'employé"
+        android:layout_gravity="center"/>
 </LinearLayout>

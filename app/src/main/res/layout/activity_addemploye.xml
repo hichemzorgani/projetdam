@@ -11,22 +11,24 @@
         android:id="@+id/editfirstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter your first name"
+        android:hint="Entrer Le Prenom"
+        android:layout_marginLeft="15dp"
         />
 
     <EditText
         android:id="@+id/editlastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter your last name"
-
+        android:hint="Entrer Le Nom"
+        android:layout_marginLeft="15dp"
         />
 
     <EditText
         android:id="@+id/editiden"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter your identifier"
+        android:hint="Entrer L'identifiant"
+        android:layout_marginLeft="15dp"
 
         />
 
@@ -34,12 +36,22 @@
         android:id="@+id/editnumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter your  number"
+        android:hint="Entrer Le Numero De Telephone"
+        android:inputType="number"
+        android:layout_marginLeft="15dp"
         />
     <EditText
         android:id="@+id/editemail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter your  email"
+        android:hint="Entrer L'email"
+        android:layout_marginLeft="15dp"
+        />
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:id="@+id/img"
+        android:src="@drawable/icon"
         />
 </LinearLayout>

@@ -19,21 +19,13 @@
         />
 
 
-    <Button
-        android:id="@+id/btnadd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:background="@drawable/rounded"
-        android:text="Ajouter Un Employe"
-       />
 
     <ViewStub
         android:id="@+id/stub_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inflatedId="@+id/showlayout"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout="@layout/listview" />
 
     <ViewStub
@@ -41,10 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inflatedId="@+id/showlayout"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout="@layout/gridview"
         />
-
 
 
 </LinearLayout>

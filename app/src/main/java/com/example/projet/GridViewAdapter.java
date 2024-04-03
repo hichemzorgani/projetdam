@@ -65,15 +65,11 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         TextView firstname = convertView.findViewById(R.id.firstname);
         TextView lastname = convertView.findViewById(R.id.lastname);
         TextView iden = convertView.findViewById(R.id.iden);
-        TextView number = convertView.findViewById(R.id.number);
-        TextView email = convertView.findViewById(R.id.email);
         Button btn = convertView.findViewById(R.id.btn);
 
         firstname.setText(emp.firstname);
         lastname.setText(emp.lastname);
         iden.setText(emp.iden);
-        number.setText(emp.number);
-        email.setText(emp.email);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

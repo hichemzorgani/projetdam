@@ -68,15 +68,13 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
         TextView firstname = convertView.findViewById(R.id.firstname);
         TextView lastname = convertView.findViewById(R.id.lastname);
         TextView iden = convertView.findViewById(R.id.iden);
-        TextView number = convertView.findViewById(R.id.number);
-        TextView email = convertView.findViewById(R.id.email);
+
         Button btn = convertView.findViewById(R.id.btn);
 
         firstname.setText(emp.firstname);
         lastname.setText(emp.lastname);
         iden.setText(emp.iden);
-        number.setText(emp.number);
-        email.setText(emp.email);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,7 +212,7 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
                 for (int i = 0; i < tempemployes.size(); i++) {
                     String fullName = tempemployes.get(i).getFirstname().toUpperCase() + " " + tempemployes.get(i).getLastname().toUpperCase();
                     if (fullName.contains(constraint)) {
-                        employe employee = new employe(tempemployes.get(i).getId(), tempemployes.get(i).getFirstname(), tempemployes.get(i).getLastname(), tempemployes.get(i).getIden(), tempemployes.get(i).getNumber(), tempemployes.get(i).getEmail());
+                        employe employee = new employe(tempemployes.get(i).getId(), tempemployes.get(i).getFirstname(), tempemployes.get(i).getLastname(), tempemployes.get(i).getIden(), tempemployes.get(i).getNumber(), tempemployes.get(i).getEmail(),tempemployes.get(i).getEmployeimage());
                         filters.add(employee);
                     }
                 }
