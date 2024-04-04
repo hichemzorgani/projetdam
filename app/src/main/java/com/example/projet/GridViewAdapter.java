@@ -1,8 +1,13 @@
 package com.example.projet;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +23,18 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GridViewAdapter extends BaseAdapter implements Filterable {
     ArrayList<employe> employes, tempemployes;
+    ImageView img1;
+    private static final int PICK_IMAGE_REQUEST = 99;
+    private Uri imagepath;
+    private Bitmap imagetostore;
     Customfilter cs;
 
     Context context;
@@ -119,7 +130,7 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         EditText editnumber = view.findViewById(R.id.editn);
         EditText editemail = view.findViewById(R.id.edite);
         EditText editiden = view.findViewById(R.id.editi);
-        ImageView img = view.findViewById(R.id.img);
+         img1 = view.findViewById(R.id.img1);
 
         String oldfirstname = employe.getFirstname();
         String oldlastname = employe.getLastname();
@@ -132,6 +143,12 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         editemail.setText(oldemail);
         editiden.setText(oldiden);
         editnumber.setText(oldnumber);
+        img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choseimage();
+            }
+        });
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(view)
@@ -146,7 +163,10 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
                         String lastname = editlastname.getText().toString();
                         String phone = editnumber.getText().toString();
                         String email = editemail.getText().toString();
-                        int res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email);
+                        if (imagetostore == null) {
+                            imagetostore = BitmapFactory.decodeResource(context.getResources(), R.drawable.icon);
+                        }
+                        int res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email,imagetostore);
                         if (res > 0) {
                             employe.setFirstname(firstname);
                             employe.setLastname(lastname);
@@ -168,6 +188,37 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
                     }
                 });
         builder.create().show();
+    }
+
+    private void choseimage() {
+        try {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try {
+            if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+                imagepath = data.getData();
+                try {
+                    imagetostore = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imagepath);
+                    employe.setEmployeimage(imagetostore);
+                    img1.setImageBitmap(imagetostore);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void Suppressionbuilder(int position) {

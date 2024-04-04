@@ -42,9 +42,22 @@
         android:layout_height="wrap_content"
         android:hint="enter your  email"
         />
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/img"
+        android:text="Choisissez une image pour l'employé"
+        android:textSize="18sp"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"/>
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:id="@+id/img1"
+        android:scaleType="centerCrop"
+        android:padding="10dp"
         />
+
 </LinearLayout>

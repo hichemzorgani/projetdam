@@ -87,7 +87,7 @@ public class Dbemploye extends SQLiteOpenHelper {
         return null;
     }
 
-    public int updateemploye(String id,String identifier,String firstname,String lastname,String email,String phone) {
+    public int updateemploye(String id,String identifier,String firstname,String lastname,String email,String phone,Bitmap image) {
         SQLiteDatabase Db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("identifier", identifier);
@@ -95,6 +95,8 @@ public class Dbemploye extends SQLiteOpenHelper {
         values.put("lastname", lastname);
         values.put("phone", phone);
         values.put("email", email);
+        byte[] imageBytes = getBytes(image);
+        values.put("image",imageBytes);
 
       return Db.update("employe", values, "id=?", new String[]{id});
 

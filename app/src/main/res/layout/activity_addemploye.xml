@@ -47,11 +47,22 @@
         android:hint="Entrer L'email"
         android:layout_marginLeft="15dp"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choisissez une image pour l'employé"
+        android:textSize="18sp"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"/>
     <ImageView
         android:layout_gravity="center"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:id="@+id/img"
-        android:src="@drawable/icon"
+        android:src="@drawable/circle_background"
+        android:scaleType="centerCrop"
+        android:padding="10dp"
         />
 </LinearLayout>

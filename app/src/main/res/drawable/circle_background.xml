@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Oval shape -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="2dp"
+                android:color="@android:color/white" />
+        </shape>
+    </item>
+    <!-- Icon -->
+    <item
+        android:drawable="@drawable/baseline_add_a_photo_24"
+        android:gravity="center"
+        android:width="24dp"
+        android:height="24dp" />
+</layer-list>
