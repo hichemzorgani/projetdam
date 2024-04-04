@@ -161,11 +161,9 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
                         String lastname = editlastname.getText().toString();
                         String phone = editnumber.getText().toString();
                         String email = editemail.getText().toString();
-                        if (imagetostore == null) {
-                            imagetostore = BitmapFactory.decodeResource(context.getResources(), R.drawable.icon);
-                        }
                         int res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email,imagetostore);
                         if (res > 0) {
+                            employe.setEmployeimage(imagetostore);
                             employe.setFirstname(firstname);
                             employe.setLastname(lastname);
                             employe.setNumber(phone);
@@ -201,8 +199,6 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
             try {
                 Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
                 imagetostore = selectedImage;
-                // If img1 is not null, it means that the user is modifying an employee
-                // So set the selected image to img1
                 if (img1 != null) {
                     img1.setImageBitmap(selectedImage);
                 }
