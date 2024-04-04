@@ -34,10 +34,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class emplyeadapter extends BaseAdapter implements Filterable {
-    ArrayList<employe> employes,tempemployes;
-    Customfilter cs;
     private static final int PICK_IMAGE_REQUEST = 99;
     private Uri imagepath;
+    ArrayList<employe> employes,tempemployes;
+    Customfilter cs;
     private Bitmap imagetostore;
     ImageView img1;
 
@@ -90,11 +90,8 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
         lastname.setText(emp.lastname);
         iden.setText(emp.iden);
         Bitmap bitmap = emp.getEmployeimage();
-        if (bitmap != null) {
-            img.setImageBitmap(bitmap);
-        } else {
-            img.setImageResource(R.drawable.icon);
-        }
+        img.setImageBitmap(bitmap);
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,8 +137,7 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
         EditText editnumber = view.findViewById(R.id.editn);
         EditText editemail = view.findViewById(R.id.edite);
         EditText editiden = view.findViewById(R.id.editi);
-         img1 = view.findViewById(R.id.img1);
-
+        img1 = view.findViewById(R.id.img1);
         String oldfirstname = employe.getFirstname();
         String oldlastname = employe.getLastname();
         String oldnumber = employe.getNumber();
@@ -157,7 +153,7 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                choseimage();
+                choseImage();
             }
         });
 
@@ -176,9 +172,6 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
                         String lastname = editlastname.getText().toString();
                         String phone = editnumber.getText().toString();
                         String email = editemail.getText().toString();
-                       /* if (imagetostore == null) {
-                            imagetostore = BitmapFactory.decodeResource(context.getResources(), R.drawable.icon);
-                        }*/
                         int res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email,imagetostore);
                         if (res>0) {
                             employe.setEmployeimage(imagetostore);
@@ -204,35 +197,27 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
         builder.create().show();
     }
 
-    private void choseimage() {
-        try {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-
-        } catch (Exception e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+    private void choseImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        try {
-            if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-                imagepath = data.getData();
-                try {
-                    imagetostore = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imagepath);
-                        img1.setImageBitmap(imagetostore);
-                        employe.setEmployeimage(imagetostore);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    public void handleImageSelectionResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null){
+            Uri imageUri = data.getData();
+            try {
+                Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
+                imagetostore = selectedImage;
+                img1.setImageBitmap(selectedImage);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
     }
+
+
 
 
     public void Suppressionbuilder(int position){

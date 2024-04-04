@@ -204,6 +204,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                 choseimage();
             }
         });
+        imagetostore = BitmapFactory.decodeResource(getResources(), R.drawable.icon);
+        img.setImageResource(R.drawable.icon);
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -219,6 +221,10 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                         String lastname = editlastname.getText().toString();
                         String phone = editnumber.getText().toString();
                         String email = editemail.getText().toString();
+                       /* if (imagetostore == null) {
+                            imagetostore = BitmapFactory.decodeResource(getResources(), R.drawable.icon);
+                            img.setImageResource(R.drawable.icon);
+                        }*/
                         boolean res = Db.insertemploye(identifier, firstname, lastname, phone, email,imagetostore);
                         if (res) {
                             if(currentViewMode==0){
@@ -262,6 +268,12 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         try {
             super.onActivityResult(requestCode, resultCode, data);
+            if (adapter != null) {
+                adapter.handleImageSelectionResult(requestCode, resultCode, data);
+            }
+            if (Gvadapter != null) {
+                Gvadapter.handleImageSelectionResult(requestCode, resultCode, data);
+            }
             if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
                 imagepath = data.getData();
                 imagetostore = MediaStore.Images.Media.getBitmap(getContentResolver(),imagepath);
@@ -274,4 +286,5 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         }
 
     }
+
 }

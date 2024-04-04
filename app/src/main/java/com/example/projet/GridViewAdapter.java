@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -84,12 +85,7 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         lastname.setText(emp.lastname);
         iden.setText(emp.iden);
         Bitmap bitmap = emp.getEmployeimage();
-        if (bitmap != null) {
-            img.setImageBitmap(bitmap);
-        } else {
-
-            img.setImageResource(R.drawable.icon);
-        }
+        img.setImageBitmap(bitmap);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,6 +133,8 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         String oldnumber = employe.getNumber();
         String oldemail = employe.getEmail();
         String oldiden = employe.getIden();
+        Bitmap bitmap = employe.getEmployeimage();
+        img1.setImageBitmap(bitmap);
 
         editfirstname.setText(oldfirstname);
         editlastname.setText(oldlastname);
@@ -191,34 +189,27 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
     }
 
     private void choseimage() {
-        try {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-
-        } catch (Exception e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        try {
-            if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-                imagepath = data.getData();
-                try {
-                    imagetostore = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imagepath);
-                    employe.setEmployeimage(imagetostore);
-                    img1.setImageBitmap(imagetostore);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+    public void handleImageSelectionResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+            Uri imageUri = data.getData();
+            try {
+                Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
+                imagetostore = selectedImage;
+                // If img1 is not null, it means that the user is modifying an employee
+                // So set the selected image to img1
+                if (img1 != null) {
+                    img1.setImageBitmap(selectedImage);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void Suppressionbuilder(int position) {
