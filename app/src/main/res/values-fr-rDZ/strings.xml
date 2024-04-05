@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">projet</string>
+    <string name="actionbarname">Gestion des Employés</string>
+    <string name="option">Option</string>
+    <string name="theme">Thème</string>
+    <string name="switchview">Changer de Vue</string>
+    <string name="language">Langue</string>
+    <string name="search">Rechercher</string>
+    <string name="add">Ajouter un Nouvel Employé</string>
+    <string name="enterinfo">Entrer les Informations</string>
+    <string name="firstname">Entrez le prénom</string>
+    <string name="lastname">Entrez le nom de famille</string>
+    <string name="id">Entrez lidentifiant</string>
+    <string name="phone">Entrez le numéro de téléphone</string>
+    <string name="email">Entrez l\'adresse email</string>
+    <string name="choosepic">Veuillez choisir une photo de l\'employe</string>
+    <string name="canceladd">Annuler</string>
+    <string name="addemploye">Ajouter un employé</string>
+    <string name="delete">Supprimer</string>
+    <string name="update">Mettre à Jour</string>
+    <string name="deletion">Suppression</string>
+    <string name="areyousurtodelete">Êtes-vous sûr de vouloir supprimer</string>
+    <string name="deleteemploye">Supprimer</string>
+    <string name="canceldeletion">Annuler</string>
+    <string name="updatetext">Mise à Jour des Informations de l\'Employe</string>
+    <string name="enterupdateinformation">Entrer les Informations de Mise à Jour</string>
+    <string name="updateconfirm">Mettre à Jour l\'Employe</string>
+    <string name="employeedirectory">Répertoire des Employés</string>
+    <string name="employeeinformations">Informations sur l\'Employe</string>
+    <string name="firstnamea">Prénom</string>
+    <string name="lastnamea">Nom de Famille</string>
+    <string name="identifiera">Identifiant</string>
+    <string name="emaila">Adresse E-mail</string>
+    <string name="phonea">Numéro de Téléphone</string>
+    <string name="contacta">Contacter l\'Employe</string>
+    <string name="choosecontact">Choisir un Mode de Contact</string>
+    <string name="byemail">Par E-mail</string>
+    <string name="byphone">Par Téléphone</string>
+
+</resources>

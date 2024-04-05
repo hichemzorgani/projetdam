@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.accounts.AbstractAccountAuthenticator;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -42,6 +44,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements TextWatcher {
     ViewStub stubGrid;
@@ -68,7 +71,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        loadLocale();
         Db = new Dbemploye(this);
         stubList=findViewById(R.id.stub_list);
         stubGrid = findViewById(R.id.stub_grid);
@@ -160,7 +165,67 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         if (item.getItemId() == R.id.add){
             showAddEmployeeDialog();
         }
+        if (item.getItemId() == R.id.Language){
+            showchangelanguagedialogue();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showchangelanguagedialogue() {
+        final String[] listlanguage ={"Francais","English","العربية"};
+        AlertDialog.Builder mbuilder = new AlertDialog.Builder(MainActivity.this);
+        mbuilder.setTitle("Choose Language")
+                .setSingleChoiceItems(listlanguage, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                       if (i==0){
+                            setlocal("fr");
+                            recreate();
+
+                        }
+                         else if (i==1){
+                            setlocal("en");
+                            recreate();
+
+                        }
+                       else if (i==2){
+                            setlocal("ar");
+                            recreate();
+
+                        }
+                       dialog.dismiss();
+                    }
+
+                });
+        AlertDialog dialog = mbuilder.create();
+        dialog.show();
+    }
+
+    private void setlocal(String lang) {
+        Locale locale;
+        if (lang.equals("fr")) {
+            locale = new Locale("fr");
+        } else if (lang.equals("en")) {
+            locale = new Locale("en");
+        } else if (lang.equals("ar")) {
+            locale = new Locale("ar");
+        } else {
+            locale = Locale.getDefault(); // Fallback to default locale
+        }
+
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+    public void loadLocale(){
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_lang","");
+        setlocal(language);
     }
 
     @Override
@@ -210,8 +275,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setView(view)
-                .setTitle("Ajouter un employer")
-                .setMessage("entrer les informations")
+                .setTitle(R.string.addemploye)
+                .setMessage(R.string.enterinfo)
                 .setIcon(R.drawable.baseline_add_24)
                 .setPositiveButton("ajouter un employer", new DialogInterface.OnClickListener() {
                     @Override

@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">projet</string>
+    <string name="actionbarname">Employee Management</string>
+    <string name="option">Option</string>
+    <string name="theme">Theme</string>
+    <string name="switchview">Switchview</string>
+    <string name="language">Language</string>
+    <string name="search">Search</string>
+    <string name="add">Add New Employee</string>
+    <string name="enterinfo">Enter Informations</string>
+    <string name="firstname">Enter the firstname</string>
+    <string name="lastname">enter the lastname</string>
+    <string name="id">Enter the Identifier</string>
+    <string name="phone">Enter The phone number</string>
+    <string name="email">Enter the adress email</string>
+    <string name="choosepic">Please choose picture of employee</string>
+    <string name="canceladd">Cancel</string>
+    <string name="addemploye">Add employee</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+    <string name="deletion">Deletion</string>
+    <string name="areyousurtodelete">Are you sur to delete</string>
+    <string name="deleteemploye">Delete</string>
+    <string name="canceldeletion">Cancel</string>
+    <string name="updatetext">Update Information of employee</string>
+    <string name="enterupdateinformation">Enter Update Information</string>
+    <string name="updateconfirm">Update Employee</string>
+    <string name="employeedirectory">Employee Directory</string>
+    <string name="employeeinformations">Employee Informations</string>
+    <string name="firstnamea">Firstname</string>
+    <string name="lastnamea">Lastname</string>
+    <string name="identifiera">Identifier</string>
+    <string name="emaila">Email Adress</string>
+    <string name="phonea">Phone Number</string>
+    <string name="contacta">Contact Employee</string>
+    <string name="choosecontact">Choose contact way</string>
+    <string name="byemail">By Email</string>
+    <string name="byphone">By Phone</string>
+
+
+
+
 </resources>

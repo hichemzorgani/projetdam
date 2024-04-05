@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">المشروع</string>
+    <string name="actionbarname">إدارة الموظفين</string>
+    <string name="option">خيار</string>
+    <string name="theme">المظهر</string>
+    <string name="switchview">تبديل العرض</string>
+    <string name="language">اللغة</string>
+    <string name="search">البحث</string>
+    <string name="add">إضافة موظف جديد</string>
+    <string name="enterinfo">إدخال المعلومات</string>
+    <string name="firstname">ادخل الاسم الأول</string>
+    <string name="lastname">ادخل الاسم الأخير</string>
+    <string name="id">ادخل المعرف</string>
+    <string name="phone">ادخل رقم الهاتف</string>
+    <string name="email">ادخل البريد الإلكتروني</string>
+    <string name="choosepic">يرجى اختيار صورة الموظف</string>
+    <string name="canceladd">إلغاء</string>
+    <string name="addemploye">إضافة موظف</string>
+    <string name="delete">حذف</string>
+    <string name="update">تحديث</string>
+    <string name="deletion">الحذف</string>
+    <string name="areyousurtodelete">هل أنت متأكد من الحذف؟</string>
+    <string name="deleteemploye">حذف</string>
+    <string name="canceldeletion">إلغاء</string>
+    <string name="updatetext">تحديث معلومات الموظف</string>
+    <string name="enterupdateinformation">أدخل معلومات التحديث</string>
+    <string name="updateconfirm">تحديث الموظف</string>
+    <string name="employeedirectory">دليل الموظفين</string>
+    <string name="employeeinformations">معلومات الموظف</string>
+    <string name="firstnamea">الاسم الأول</string>
+    <string name="lastnamea">الاسم الأخير</string>
+    <string name="identifiera">المعرف</string>
+    <string name="emaila">البريد الإلكتروني</string>
+    <string name="phonea">رقم الهاتف</string>
+    <string name="contacta">التواصل مع الموظف</string>
+    <string name="choosecontact">اختر طريقة التواصل</string>
+    <string name="byemail">عن طريق البريد الإلكتروني</string>
+    <string name="byphone">عن طريق الهاتف</string>
+
+</resources>

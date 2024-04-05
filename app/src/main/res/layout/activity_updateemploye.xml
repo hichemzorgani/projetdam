@@ -11,14 +11,14 @@
         android:id="@+id/editf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter your first name"
+        android:hint="@string/firstname"
         />
 
     <EditText
         android:id="@+id/editl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter your last name"
+        android:hint="@string/lastname"
 
         />
 
@@ -26,7 +26,7 @@
         android:id="@+id/editi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter your identifier"
+        android:hint="@string/id"
 
         />
 
@@ -34,18 +34,18 @@
         android:id="@+id/editn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter your  number"
+        android:hint="@string/phone"
         />
     <EditText
         android:id="@+id/edite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter your  email"
+        android:hint="@string/email"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choisissez une image pour l'employé"
+        android:text="@string/choosepic"
         android:textSize="18sp"
         android:layout_marginLeft="15dp"
         android:layout_gravity="center"

@@ -55,7 +55,7 @@
         android:id="@+id/btn"
         android:layout_width="90dp"
         android:layout_height="40dp"
-        android:text="Option"
+        android:text="@string/option"
         android:layout_gravity="center"
         android:background="@drawable/roundedoption"
         android:focusable="false"

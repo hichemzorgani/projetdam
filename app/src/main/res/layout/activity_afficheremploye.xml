@@ -32,7 +32,7 @@
         android:id="@+id/label_firstname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prénom:"
+        android:text="@string/firstnamea"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginLeft="10dp"/>
 
@@ -54,7 +54,7 @@
         android:id="@+id/label_lastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nom:"
+        android:text="@string/lastnamea"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
@@ -75,7 +75,7 @@
         android:id="@+id/label_identifier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Identifiant:"
+        android:text="@string/identifiera"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
@@ -96,7 +96,7 @@
         android:id="@+id/label_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email:"
+        android:text="@string/emaila"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
@@ -118,7 +118,7 @@
         android:id="@+id/label_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Téléphone:"
+        android:text="@string/phonea"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
@@ -138,6 +138,6 @@
         android:id="@+id/contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contacter l'employé"
+        android:text="@string/contacta"
         android:layout_gravity="center"/>
 </LinearLayout>

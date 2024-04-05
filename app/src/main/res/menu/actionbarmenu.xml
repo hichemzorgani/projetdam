@@ -3,16 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/add"
-        android:title="ajouter"
+        android:title="@string/add"
         android:icon="@drawable/addicon"
         app:showAsAction="always" />
     <item android:id="@+id/theme"
         android:title="Theme"
         />
     <item android:id="@+id/display"
-        android:title="Switch view"
+        android:title="@string/switchview"
         />
     <item android:id="@+id/Language"
-        android:title="Language"
+        android:title="@string/language"
         />
 </menu>

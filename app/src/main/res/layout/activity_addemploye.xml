@@ -11,7 +11,7 @@
         android:id="@+id/editfirstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Entrer Le Prenom"
+        android:hint="@string/firstname"
         android:layout_marginLeft="15dp"
         />
 
@@ -19,7 +19,7 @@
         android:id="@+id/editlastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Entrer Le Nom"
+        android:hint="@string/lastname"
         android:layout_marginLeft="15dp"
         />
 
@@ -27,7 +27,7 @@
         android:id="@+id/editiden"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Entrer L'identifiant"
+        android:hint="@string/id"
         android:layout_marginLeft="15dp"
 
         />
@@ -36,7 +36,7 @@
         android:id="@+id/editnumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Entrer Le Numero De Telephone"
+        android:hint="@string/phone"
         android:inputType="number"
         android:layout_marginLeft="15dp"
         />
@@ -44,13 +44,13 @@
         android:id="@+id/editemail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Entrer L'email"
+        android:hint="@string/email"
         android:layout_marginLeft="15dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choisissez une image pour l'employé"
+        android:text="@string/choosepic"
         android:textSize="18sp"
         android:layout_marginLeft="15dp"
         android:layout_gravity="center"

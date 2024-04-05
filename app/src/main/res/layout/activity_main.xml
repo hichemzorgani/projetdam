@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/searchicon"
         android:drawablePadding="8dp"
-        android:hint="Search"
+        android:hint="@string/search"
         android:inputType="text"
         android:maxLines="1"
         />
