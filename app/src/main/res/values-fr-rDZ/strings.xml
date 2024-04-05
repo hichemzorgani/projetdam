@@ -41,5 +41,8 @@
     <string name="toastajout">Nouveau employé ajouté</string>
     <string name="toastajoutx">Échec de ajout </string>
     <string name="toastupdatex">Échec de la modification de employé</string>
+    <string name="title">Annuaire des employés</string>
+    <string name="chooseemail">choisis e-mail du client</string>
+    <string name="details">Détails de employé</string>
 
 </resources>

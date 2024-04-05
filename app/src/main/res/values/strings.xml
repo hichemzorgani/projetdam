@@ -40,6 +40,9 @@
     <string name="toastajout">New employee added</string>
     <string name="toastajoutx">Failed to add employee</string>
     <string name="toastupdatex">Failed to edit employee</string>
+    <string name="title">Employee directory</string>
+    <string name="chooseemail">choose email client:</string>
+    <string name="details">employee details</string>
 
 
 

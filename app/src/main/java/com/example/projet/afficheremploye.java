@@ -42,7 +42,7 @@ public class afficheremploye extends AppCompatActivity {
         d_identifier.setText(identifier);
         d_phone.setText(phone);
         d_email.setText(email);
-        getSupportActionBar().setTitle("Employee Directory");
+        getSupportActionBar().setTitle(R.string.title);
 
 
 
@@ -58,17 +58,17 @@ public class afficheremploye extends AppCompatActivity {
 
     private void contactdialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choisir un moyen de contact");
+        builder.setTitle(R.string.choosecontact);
 
 
-        builder.setPositiveButton("Par téléphone", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.byphone, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 phone.toString().trim();
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ Uri.encode(phone)));
                 startActivity(intent);
             }
         });
-        builder.setNegativeButton("Par email", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.byemail, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 email.toString();
                 sendemail(email);

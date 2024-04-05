@@ -10,7 +10,7 @@
         android:id="@+id/employedetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Employé Details"
+        android:text="@string/details"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginLeft="10dp"/>

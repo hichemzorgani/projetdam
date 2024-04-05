@@ -180,15 +180,15 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
                             employe.setNumber(phone);
                             employe.setEmail(email);
                             employe.setIden(identifier);
-                            Toast.makeText(context, "modifier", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.update, Toast.LENGTH_SHORT).show();
                             notifyDataSetChanged();
                         } else {
-                            Toast.makeText(context, "Échec de la modification de l'employé", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.toastupdatex, Toast.LENGTH_SHORT).show();
                         }
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.canceladd, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -222,9 +222,9 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
 
     public void Suppressionbuilder(int position){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Suppression")
-                .setMessage("Tu es sur de supprimer " + dname)
-                .setPositiveButton("Supprimer ", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.delete)
+                .setMessage(R.string.areyousurtodelete + dname)
+                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         int res = Db.deleteemploye(String.valueOf(did));
@@ -234,7 +234,7 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
                         }
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.canceladd, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

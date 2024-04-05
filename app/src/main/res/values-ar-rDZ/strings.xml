@@ -41,5 +41,8 @@
     <string name="toastajout">تمت إضافة موظف جديد</string>
     <string name="toastajoutx">فشل في إضافة الموظف</string>
     <string name="toastupdatex">فشل في تعديل الموظف</string>
+    <string name="title">دليل الموظف</string>
+    <string name="chooseemail">اختر البريد الإلكتروني للعميل</string>
+    <string name="details">تفاصيل الموظف</string>
 
 </resources>
