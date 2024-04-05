@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         stubGrid.inflate();
         stubList.inflate();
 
-        getSupportActionBar().setTitle("Gestion Des Employes");
+        getSupportActionBar().setTitle(R.string.actionbarname);
         //getSupportActionBar().setIcon(R.mipmap.icon);
         getSupportActionBar().show();
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     private void showchangelanguagedialogue() {
         final String[] listlanguage ={"Francais","English","العربية"};
         AlertDialog.Builder mbuilder = new AlertDialog.Builder(MainActivity.this);
-        mbuilder.setTitle("Choose Language")
+        mbuilder.setTitle(R.string.chooselanguage)
                 .setSingleChoiceItems(listlanguage, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                 .setTitle(R.string.addemploye)
                 .setMessage(R.string.enterinfo)
                 .setIcon(R.drawable.baseline_add_24)
-                .setPositiveButton("ajouter un employer", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String identifier = editiden.getText().toString();
@@ -295,19 +295,19 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                             if(currentViewMode==0){
                                 adapter.notifyDataSetChanged();
                                 showemployes();
-                                Toast.makeText(MainActivity.this, "Nouvel employé ajouté", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this,R.string.toastajout, Toast.LENGTH_SHORT).show();
 
                             } else {
                                 Gvadapter.notifyDataSetChanged();
                                 gridshowemployes();
-                                Toast.makeText(MainActivity.this, "Nouvel employé ajouté", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, R.string.toastajout, Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(MainActivity.this, "Échec de l'ajout de l'employé", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, R.string.toastajoutx, Toast.LENGTH_SHORT).show();
                         }
                     }
                 })
-                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.canceladd, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

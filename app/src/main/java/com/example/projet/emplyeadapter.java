@@ -161,10 +161,10 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(view)
-                .setTitle("Modifier un employer")
-                .setMessage("entrer les informations")
+                .setTitle(R.string.updateconfirm)
+                .setMessage(R.string.enterinfo)
                 .setIcon(R.drawable.icon)
-                .setPositiveButton("modifier un employer", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.updateconfirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String identifier = editiden.getText().toString();

@@ -36,6 +36,10 @@
     <string name="choosecontact">Choose contact way</string>
     <string name="byemail">By Email</string>
     <string name="byphone">By Phone</string>
+    <string name="chooselanguage">Choose language</string>
+    <string name="toastajout">New employee added</string>
+    <string name="toastajoutx">Failed to add employee</string>
+    <string name="toastupdatex">Failed to edit employee</string>
 
 
 

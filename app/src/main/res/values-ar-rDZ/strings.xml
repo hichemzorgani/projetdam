@@ -37,5 +37,9 @@
     <string name="choosecontact">اختر طريقة التواصل</string>
     <string name="byemail">عن طريق البريد الإلكتروني</string>
     <string name="byphone">عن طريق الهاتف</string>
+    <string name="chooselanguage">اختر اللغة</string>
+    <string name="toastajout">تمت إضافة موظف جديد</string>
+    <string name="toastajoutx">فشل في إضافة الموظف</string>
+    <string name="toastupdatex">فشل في تعديل الموظف</string>
 
 </resources>
