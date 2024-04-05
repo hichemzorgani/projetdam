@@ -211,7 +211,7 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
     public void Suppressionbuilder(int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.delete)
-                .setMessage(R.string.areyousurtodelete + dname)
+                .setMessage(context.getString(R.string.areyousurtodelete) + " " + dname)
                 .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

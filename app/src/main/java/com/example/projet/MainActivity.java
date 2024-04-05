@@ -286,10 +286,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                         String lastname = editlastname.getText().toString();
                         String phone = editnumber.getText().toString();
                         String email = editemail.getText().toString();
-                       /* if (imagetostore == null) {
-                            imagetostore = BitmapFactory.decodeResource(getResources(), R.drawable.icon);
-                            img.setImageResource(R.drawable.icon);
-                        }*/
+                       
                         boolean res = Db.insertemploye(identifier, firstname, lastname, phone, email,imagetostore);
                         if (res) {
                             if(currentViewMode==0){
