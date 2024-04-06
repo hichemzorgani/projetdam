@@ -1,5 +1,7 @@
 package com.example.projet;
 
+import static androidx.core.graphics.drawable.DrawableCompat.applyTheme;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -17,6 +19,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -55,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     private static final int PICK_IMAGE_REQUEST = 99;
     private Uri imagepath;
     private Bitmap imagetostore;
+    private static final String PREF_THEME_KEY = "theme_key";
+    private static final int THEME_DEFAULT = 0;
+    private static final int THEME_HOSPITAL = 1;
 
 
     Dbemploye Db;
@@ -70,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setAppTheme();
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -81,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         stubList.inflate();
 
         getSupportActionBar().setTitle(R.string.actionbarname);
-        //getSupportActionBar().setIcon(R.mipmap.icon);
         getSupportActionBar().show();
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -168,7 +174,50 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         if (item.getItemId() == R.id.Language){
             showchangelanguagedialogue();
         }
+        if (item.getItemId() == R.id.theme){
+            showThemeSelectionDialog();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showThemeSelectionDialog() {
+        final String[] listTheme = {"Hospital Theme", "University Theme"};
+        AlertDialog.Builder themeBuilder = new AlertDialog.Builder(MainActivity.this);
+        themeBuilder.setTitle("Choose Theme")
+                .setSingleChoiceItems(listTheme, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        switch (i) {
+                            case 0:
+                                applyTheme(THEME_HOSPITAL); // Apply Hospital Theme
+                                break;
+                            case 1:
+                                // Apply University Theme (if defined)
+                                // applyTheme(THEME_UNIVERSITY);
+                                break;
+                        }
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = themeBuilder.create();
+        dialog.show();
+    }
+    private void applyTheme(int theme) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        preferences.edit().putInt(PREF_THEME_KEY, theme).apply();
+        recreate(); // Recreate the activity to apply the selected theme
+    }
+    private void setAppTheme() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int theme = preferences.getInt(PREF_THEME_KEY, THEME_DEFAULT);
+        switch (theme) {
+            case THEME_DEFAULT:
+                setTheme(R.style.AppTheme);
+                break;
+            case THEME_HOSPITAL:
+                setTheme(R.style.HospitalTheme);
+                break;
+        }
     }
 
     private void showchangelanguagedialogue() {
@@ -286,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                         String lastname = editlastname.getText().toString();
                         String phone = editnumber.getText().toString();
                         String email = editemail.getText().toString();
-                       
+
                         boolean res = Db.insertemploye(identifier, firstname, lastname, phone, email,imagetostore);
                         if (res) {
                             if(currentViewMode==0){

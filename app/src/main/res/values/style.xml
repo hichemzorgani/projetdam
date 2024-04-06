@@ -5,6 +5,12 @@
         <item name="android:actionBarSize">45dp</item> <!-- Modifier la taille de la barre d'action -->
         <item name="android:actionBarStyle">@style/MyActionBar</item>
     </style>
+    <!-- Hospital Theme -->
+    <style name="HospitalTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize action bar colors for hospital theme -->
+        <item name="android:actionBarSize">45dp</item>
+        <item name="android:actionBarStyle">@style/HospitalActionBar</item>
+    </style>
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <!-- Déplacer l'icône vers la gauche -->
@@ -12,9 +18,19 @@
         <!-- Modifier la taille du texte du titre -->
         <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
+    <style name="HospitalActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:contentInsetStart">5dp</item>
+        <item name="android:titleTextStyle">@style/HospitalActionBarTitleText</item>
+    </style>
 
     <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <!-- Modifier la taille du texte du titre -->
         <item name="android:textSize">10sp</item>
+    </style>
+    <style name="HospitalActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <!-- Customize title text size -->
+        <item name="android:textSize">14sp</item>
+        <!-- Customize title text color -->
+         <!-- White color for hospital theme -->
     </style>
 </resources>
