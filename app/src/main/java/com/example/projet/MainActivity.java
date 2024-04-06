@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     private static final String PREF_THEME_KEY = "theme_key";
     private static final int THEME_DEFAULT = 0;
     private static final int THEME_HOSPITAL = 1;
+    private static final int THEME_UNIVERSITY = 2;
 
 
     Dbemploye Db;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     ArrayList<employe> arraylist;
     int did;
     String dname;
-    emplyeadapter adapter;
+    listviewadapter Lvadapter;
     GridViewAdapter Gvadapter;
     EditText searchbar;
     ImageView img;
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     private void setAdapters() {
         if (VIEW_MODE_LISTVIEW == currentViewMode){
-            showemployes();
+            listshowemployes();
         } else {
            gridshowemployes();
         }
@@ -194,6 +195,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                             case 1:
                                 applyTheme(THEME_HOSPITAL);
                                 break;
+                            case 2:
+                                applyTheme(THEME_UNIVERSITY);
                         }
                         dialog.dismiss();
                     }
@@ -215,6 +218,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                 break;
             case THEME_HOSPITAL:
                 setTheme(R.style.HospitalTheme);
+                break;
+            case THEME_UNIVERSITY:
+                setTheme(R.style.UniversityTheme);
                 break;
         }
     }
@@ -279,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if(currentViewMode==0){
-            this.adapter.getFilter().filter(s);
+            this.Lvadapter.getFilter().filter(s);
         } else {
             this.Gvadapter.getFilter().filter(s);
         }
@@ -295,11 +301,11 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     }
 
-    private void showemployes() {
+    private void listshowemployes() {
         arraylist = Db.getallemploye();
-        adapter = new emplyeadapter(this, arraylist);
-        Lv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        Lvadapter = new listviewadapter(this, arraylist);
+        Lv.setAdapter(Lvadapter);
+        Lvadapter.notifyDataSetChanged();
     }
 
     private void showAddEmployeeDialog() {
@@ -338,8 +344,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                         boolean res = Db.insertemploye(identifier, firstname, lastname, phone, email,imagetostore);
                         if (res) {
                             if(currentViewMode==0){
-                                adapter.notifyDataSetChanged();
-                                showemployes();
+                                Lvadapter.notifyDataSetChanged();
+                                listshowemployes();
                                 Toast.makeText(MainActivity.this,R.string.toastajout, Toast.LENGTH_SHORT).show();
 
                             } else {
@@ -378,8 +384,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         try {
             super.onActivityResult(requestCode, resultCode, data);
-            if (adapter != null) {
-                adapter.handleImageSelectionResult(requestCode, resultCode, data);
+            if (Lvadapter != null) {
+                Lvadapter.handleImageSelectionResult(requestCode, resultCode, data);
             }
             if (Gvadapter != null) {
                 Gvadapter.handleImageSelectionResult(requestCode, resultCode, data);

@@ -1,14 +1,10 @@
 package com.example.projet;
 
-import static androidx.core.app.ActivityCompat.startActivityForResult;
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -24,16 +20,13 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AlertDialog;
-import  android.os.Build.VERSION_CODES.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
 
-public class emplyeadapter extends BaseAdapter implements Filterable {
+public class listviewadapter extends BaseAdapter implements Filterable {
     private static final int PICK_IMAGE_REQUEST = 99;
     private Uri imagepath;
     ArrayList<employe> employes,tempemployes;
@@ -48,7 +41,7 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
     Dbemploye Db;
     employe employe;
 
-    public emplyeadapter(Context context, ArrayList<employe> employes) {
+    public listviewadapter(Context context, ArrayList<employe> employes) {
         this.context = context;
         this.employes = employes;
         this.tempemployes=employes;
@@ -76,7 +69,7 @@ public class emplyeadapter extends BaseAdapter implements Filterable {
         employe emp = employes.get(position);
         if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-            convertView = layoutInflater.inflate(R.layout.employe, parent, false);
+            convertView = layoutInflater.inflate(R.layout.itemlistemploye, parent, false);
         }
 
         TextView firstname = convertView.findViewById(R.id.firstname);

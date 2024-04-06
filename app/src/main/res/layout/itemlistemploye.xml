@@ -8,6 +8,7 @@
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginLeft="5dp"
         android:id="@+id/img"
         android:src="@drawable/icon"
         android:background="@drawable/circleemploye"
@@ -22,7 +23,8 @@
         android:background="@drawable/roundedoption"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

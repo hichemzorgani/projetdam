@@ -10,7 +10,13 @@
         <!-- Customize action bar colors for hospital theme -->
         <item name="android:actionBarSize">45dp</item>
         <item name="android:actionBarStyle">@style/HospitalActionBar</item>
-        <item name="android:background">#00FF00</item>
+        <item name="android:background">#64B0C9</item>
+    </style>
+    <style name="UniversityTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize action bar colors for hospital theme -->
+        <item name="android:actionBarSize">45dp</item>
+        <item name="android:actionBarStyle">@style/HospitalActionBar</item>
+        <item name="android:background">#ffc857</item>
     </style>
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
@@ -31,7 +37,5 @@
     <style name="HospitalActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <!-- Customize title text size -->
         <item name="android:textSize">14sp</item>
-        <!-- Customize title text color -->
-         <!-- White color for hospital theme -->
     </style>
 </resources>

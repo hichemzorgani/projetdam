@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -18,13 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import java.io.IOException;
@@ -72,7 +68,7 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         employe emp = employes.get(position);
         if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-            convertView = layoutInflater.inflate(R.layout.gridemploye, parent, false);
+            convertView = layoutInflater.inflate(R.layout.itemgridemploye, parent, false);
         }
 
         TextView firstname = convertView.findViewById(R.id.firstname);
