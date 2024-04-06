@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     }
 
     private void showThemeSelectionDialog() {
-        final String[] listTheme = {"Hospital Theme", "University Theme"};
+        final String[] listTheme = {"Default Theme","Hospital Theme", "University Theme"};
         AlertDialog.Builder themeBuilder = new AlertDialog.Builder(MainActivity.this);
         themeBuilder.setTitle("Choose Theme")
                 .setSingleChoiceItems(listTheme, -1, new DialogInterface.OnClickListener() {
@@ -189,11 +189,10 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                     public void onClick(DialogInterface dialog, int i) {
                         switch (i) {
                             case 0:
-                                applyTheme(THEME_HOSPITAL); // Apply Hospital Theme
+                                applyTheme(THEME_DEFAULT); // Apply Hospital Theme
                                 break;
                             case 1:
-                                // Apply University Theme (if defined)
-                                // applyTheme(THEME_UNIVERSITY);
+                                applyTheme(THEME_HOSPITAL);
                                 break;
                         }
                         dialog.dismiss();

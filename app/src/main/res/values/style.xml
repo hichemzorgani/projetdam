@@ -10,6 +10,7 @@
         <!-- Customize action bar colors for hospital theme -->
         <item name="android:actionBarSize">45dp</item>
         <item name="android:actionBarStyle">@style/HospitalActionBar</item>
+        <item name="android:background">#00FF00</item>
     </style>
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
