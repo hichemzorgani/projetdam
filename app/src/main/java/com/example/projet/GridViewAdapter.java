@@ -46,6 +46,7 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         this.employes = employes;
         this.tempemployes = employes;
         Db = new Dbemploye(context);
+        img1 = new ImageView(context);
     }
 
     @Override

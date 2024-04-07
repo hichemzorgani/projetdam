@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                     public void onClick(DialogInterface dialog, int i) {
                         switch (i) {
                             case 0:
-                                applyTheme(THEME_DEFAULT); // Apply Hospital Theme
+                                applyTheme(THEME_DEFAULT);
                                 break;
                             case 1:
                                 applyTheme(THEME_HOSPITAL);
