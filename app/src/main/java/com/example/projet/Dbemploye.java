@@ -22,7 +22,8 @@ public class Dbemploye extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create_table = "create table employe(id integer primary key autoincrement,identifier varchar(30),firstname varchar(30),lastname varchar(30),phone varchar(30), email varchar(30),image blob)";
+        String create_table = "create table employe(id integer primary key autoincrement,identifier varchar(30),firstname varchar(30)," +
+                "lastname varchar(30),phone varchar(30), email varchar(30),image blob)";
         db.execSQL(create_table);
     }
 

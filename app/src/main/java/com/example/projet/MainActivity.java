@@ -145,6 +145,12 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         Gv.setAdapter(Gvadapter);
         Gvadapter.notifyDataSetChanged();
     }
+    private void listshowemployes() {
+        arraylist = Db.getallemploye();
+        Lvadapter = new listviewadapter(this, arraylist);
+        Lv.setAdapter(Lvadapter);
+        Lvadapter.notifyDataSetChanged();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -155,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //changement de currentViewMode
         if (item.getItemId() == R.id.display) {
             if (VIEW_MODE_LISTVIEW == currentViewMode){
                 currentViewMode = VIEW_MODE_GRIDVIEW;
@@ -169,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
             editor.commit();
 
         }
+        //Button ajouter
         if (item.getItemId() == R.id.add){
             showAddEmployeeDialog();
         }
@@ -207,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     private void applyTheme(int theme) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         preferences.edit().putInt(PREF_THEME_KEY, theme).apply();
-        recreate(); // Recreate the activity to apply the selected theme
+        recreate();
     }
     private void setAppTheme() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -301,12 +309,6 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     }
 
-    private void listshowemployes() {
-        arraylist = Db.getallemploye();
-        Lvadapter = new listviewadapter(this, arraylist);
-        Lv.setAdapter(Lvadapter);
-        Lvadapter.notifyDataSetChanged();
-    }
 
     private void showAddEmployeeDialog() {
         LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
