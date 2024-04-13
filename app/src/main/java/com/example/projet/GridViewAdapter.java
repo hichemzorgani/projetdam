@@ -40,6 +40,7 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
     String dname;
     Dbemploye Db;
     employe employe;
+    boolean imageChanged = false;
 
     public GridViewAdapter(Context context, ArrayList<employe> employes) {
         this.context = context;
@@ -123,7 +124,7 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         EditText editnumber = view.findViewById(R.id.editn);
         EditText editemail = view.findViewById(R.id.edite);
         EditText editiden = view.findViewById(R.id.editi);
-         img1 = view.findViewById(R.id.img1);
+        img1 = view.findViewById(R.id.img1);
 
         String oldfirstname = employe.getFirstname();
         String oldlastname = employe.getLastname();
@@ -131,24 +132,27 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         String oldemail = employe.getEmail();
         String oldiden = employe.getIden();
         Bitmap bitmap = employe.getEmployeimage();
-        img1.setImageBitmap(bitmap);
 
+        // Set existing data to the views
+        img1.setImageBitmap(bitmap);
         editfirstname.setText(oldfirstname);
         editlastname.setText(oldlastname);
         editemail.setText(oldemail);
         editiden.setText(oldiden);
         editnumber.setText(oldnumber);
+
+        // Image selection listener
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                choseimage();
+                choseImage();
             }
         });
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(view)
                 .setTitle(R.string.updateconfirm)
-                .setMessage(R.string.enterupdateinformation)
+                .setMessage(R.string.enterinfo)
                 .setIcon(R.drawable.icon)
                 .setPositiveButton(R.string.updateconfirm, new DialogInterface.OnClickListener() {
                     @Override
@@ -158,9 +162,20 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
                         String lastname = editlastname.getText().toString();
                         String phone = editnumber.getText().toString();
                         String email = editemail.getText().toString();
-                        int res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email,imagetostore);
-                        if (res > 0) {
+                        int res;
+
+                        // Check if a new image was selected
+                        if (imageChanged) {
+                            // Update employee with new image
+                            res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email, imagetostore);
                             employe.setEmployeimage(imagetostore);
+                        } else {
+                            // Update employee without changing the image
+                            res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email, bitmap);
+                        }
+
+                        if (res > 0) {
+                            // Update other employee details
                             employe.setFirstname(firstname);
                             employe.setLastname(lastname);
                             employe.setNumber(phone);
@@ -183,7 +198,7 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
         builder.create().show();
     }
 
-    private void choseimage() {
+    private void choseImage() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -196,9 +211,8 @@ public class GridViewAdapter extends BaseAdapter implements Filterable {
             try {
                 Bitmap selectedImage = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
                 imagetostore = selectedImage;
-                if (img1 != null) {
-                    img1.setImageBitmap(selectedImage);
-                }
+                img1.setImageBitmap(selectedImage);
+                imageChanged = true; // Image has been changed
             } catch (IOException e) {
                 e.printStackTrace();
             }
