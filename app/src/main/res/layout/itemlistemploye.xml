@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:background="#ffffff"
-    android:orientation="vertical"
-    >
+    android:padding="16dp">
+
+    <!-- Image View -->
     <ImageView
+        android:id="@+id/img"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/img"
         android:src="@drawable/icon"
         android:background="@drawable/circleemploye"
         android:scaleType="centerCrop"
-        />
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="100dp"
-        android:layout_height="42dp"
-        android:layout_below="@+id/img"
-        android:text="@string/option"
-        android:background="@drawable/roundedoption"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:textColor="@color/white"
-        android:layout_marginTop="5dp"/>
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_marginEnd="20dp"/>
+
+    <!-- Vertical Layout for Text Views and Button -->
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/firstname"
-        android:layout_toRightOf="@id/img"
-        android:layout_marginLeft="20dp"
-        android:text="zorgani"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginTop="15dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lastname"
-        android:layout_toRightOf="@id/firstname"
-        android:layout_marginLeft="6dp"
-        android:text="hichem"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginTop="15dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        />
+        <!-- First Name TextView -->
+        <TextView
+            android:id="@+id/firstname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="zorgani"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginBottom="5dp"/>
 
+        <!-- Last Name TextView -->
+        <TextView
+            android:id="@+id/lastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hichem"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginBottom="5dp"/>
 
-    <TextView
-        android:id="@+id/iden"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/firstname"
-        android:layout_marginTop="10dp"
-        android:layout_alignLeft="@+id/firstname"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="1234566" />
+        <!-- ID TextView -->
+        <TextView
+            android:id="@+id/iden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1234566"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
 
+        <!-- Button -->
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="100dp"
+            android:layout_height="42dp"
+            android:text="@string/option"
+            android:background="@drawable/roundedoption"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+    </LinearLayout>
 
-
-
-
-</RelativeLayout>
+</LinearLayout>

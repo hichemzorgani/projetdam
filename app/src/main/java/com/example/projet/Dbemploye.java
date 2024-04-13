@@ -51,8 +51,12 @@ public class Dbemploye extends SQLiteOpenHelper {
     }
 
     private byte[] getBytes(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null; 
+        }
+
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
     }
 
