@@ -174,11 +174,11 @@ public class listviewadapter extends BaseAdapter implements Filterable {
                         // Check if a new image was selected
                         if (imageChanged) {
                             // Update employee with new image
-                             res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email, imagetostore);
+                             res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, email, phone, imagetostore);
                             employe.setEmployeimage(imagetostore);
                         } else {
                             // Update employee without changing the image
-                             res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, phone, email, bitmap);
+                             res = Db.updateemploye(String.valueOf(did), identifier, firstname, lastname, email, phone, bitmap);
                         }
 
                         if (res > 0) {

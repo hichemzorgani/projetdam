@@ -90,25 +90,34 @@ public class afficheremploye extends AppCompatActivity {
     }
 
     private void contactdialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.choosecontact);
+        final String[] listlanguage ={"Email","Phone","Sms"};
+        AlertDialog.Builder mbuilder = new AlertDialog.Builder(this);
+        mbuilder.setTitle(R.string.choosecontact)
+                .setSingleChoiceItems(listlanguage, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        if (i==0){
+                            email.toString();
+                            sendemail(email);
 
+                        }
+                        else if (i==1){
+                            phone.toString().trim();
+                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ Uri.encode(phone)));
+                            startActivity(intent);
 
-        builder.setPositiveButton(R.string.byphone, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                phone.toString().trim();
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ Uri.encode(phone)));
-                startActivity(intent);
-            }
-        });
-        builder.setNegativeButton(R.string.byemail, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                email.toString();
-                sendemail(email);
-            }
-        });
+                        }
+                        else if (i==2){
+                            phone.toString().trim();
+                            sendsms(phone);
 
-        AlertDialog dialog = builder.create();
+                        }
+                        dialog.dismiss();
+                    }
+
+                });
+
+        AlertDialog dialog = mbuilder.create();
         dialog.show();
     }
     public void sendemail(String email){
@@ -117,6 +126,12 @@ public class afficheremploye extends AppCompatActivity {
         intent.setType("message/rfc822");
         startActivity(Intent.createChooser(intent,"choose email client:"));
 
+    }
+    public  void sendsms (String phone){
+        Uri uri=Uri.parse("sms: phone");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.putExtra("sms_body", "message");
+        startActivity(intent);
     }
 
 }
