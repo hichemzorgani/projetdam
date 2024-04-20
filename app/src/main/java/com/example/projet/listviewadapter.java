@@ -160,7 +160,7 @@ public class listviewadapter extends BaseAdapter implements Filterable {
         builder.setView(view)
                 .setTitle(R.string.updateconfirm)
                 .setMessage(R.string.enterinfo)
-                .setIcon(R.drawable.icon)
+                .setIcon(R.drawable.baseline_autorenew_24)
                 .setPositiveButton(R.string.updateconfirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
